@@ -67,15 +67,13 @@ function makeItDark(obj){
  			var extraBgData = background.substring(background.indexOf(")")+1);
  			var bgColor = getColor(background);
 
- 			if(bgColor.a !== 0){
-
-	 			if (obj.css('background-image') != 'none'){
-	 				hasImage = true;
-		 			if (obj.css('background-image').indexOf('.png') === -1){
-		 				extraBgData = "";
-		 			}
-	 			}
-	                    
+            if (obj.css('background-image') != 'none'){
+                hasImage = true;
+                if (obj.css('background-image').indexOf('.png') === -1){
+                    extraBgData = "";
+                }
+            }
+ 			if(bgColor.a !== 0 || hasImage){        
 	            bgColor = Color.inScope( Color.darken(bgColor) , 30, 180);
 	            console.log(extraBgData)
 	            obj.css('background', Color.toCss( bgColor ) + extraBgData);            
