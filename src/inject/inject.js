@@ -75,7 +75,6 @@ function makeItDark(obj){
             }
  			if(bgColor.a !== 0 || hasImage){        
 	            bgColor = Color.inScope( Color.darken(bgColor) , 30, 180);
-	            console.log(extraBgData)
 	            obj.css('background', Color.toCss( bgColor ) + extraBgData);            
 	        }
 	    }catch(e){}
@@ -110,7 +109,15 @@ function DARK () {
     elem.forEach(makeItDark);
 }
 
-__darken = DARK;
+__darken = function(){
+   $("body").bind("DOMNodeInserted",function(e){
+        var elem = Array.prototype.slice.call(e.target.children);
+        makeItDark(e.target);
+        elem.forEach(makeItDark);
+    });
+    DARK();
+   
+};
 
 
 })();
